@@ -1,20 +1,15 @@
-import { useState, useEffect } from 'react';
-import { NasaPhoto } from '../../domain/entities/NasaPhoto';
-import { fetchApod } from '../../application/usecases/fetchApod';
-import { NasaRepositoryImpl } from '../../data/repositories/NasaRepositoryImpl';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchApodThunk } from '../../store/thunks/apodThunk';
+import { RootState } from '../../store/store';
 
 export const useApodViewModel = () => {
-  const [photo, setPhoto] = useState<NasaPhoto | null>(null);
-  const [loading, setLoading] = useState(true);
+  const dispatch = useDispatch();
+  const { photo, loading, error } = useSelector((state: RootState) => state.apod);
 
   useEffect(() => {
-    const load = async () => {
-      const result = await fetchApod(NasaRepositoryImpl)();
-      setPhoto(result);
-      setLoading(false);
-    };
-    load();
-  }, []);
+    dispatch(fetchApodThunk());
+  }, [dispatch]);
 
-  return { photo, loading };
+  return { photo, loading, error };
 };

@@ -1,7 +1,7 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { HomeScreen } from '@/presentation/screens/HomeScreen';
-import { DescriptionScreen } from '@/presentation/screens/DescriptionScreen';
+import { HomeScreen } from '../presentation/screens/HomeScreen';
+import { DescriptionScreen } from '../presentation/screens/DescriptionScreen';
 
 const Tab = createBottomTabNavigator();
 
@@ -12,4 +12,4 @@ export default function TabsNavigator() {
       <Tab.Screen name="Acerca de la App" component={DescriptionScreen} />
     </Tab.Navigator>
   );
-}
+} 

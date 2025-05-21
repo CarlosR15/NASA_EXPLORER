@@ -6,14 +6,14 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { PaperProvider } from 'react-native-paper';
 import { Provider } from 'react-redux';
 
-import RootNavigator from '@/navigation/RootNavigator';
-import { linking } from '@/navigation/linking';
-import { store } from '@/store/store';
+import RootNavigator from './src/navigation/RootNavigator';
+import { linking } from './src/navigation/linking';
+import { store } from './src/store/store';
 
-import { useTheme } from '@/presentation/hooks/useTheme';
-import { useConnectivity } from '@/presentation/hooks/useConnectivity';
-import { useNavigationState } from '@/presentation/hooks/useNavigationState';
-import ClockLoader from '@/presentation/components/loaders/ClockLoader';
+import { useTheme } from './src/presentation/hooks/useTheme';
+import { useConnectivity } from './src/presentation/hooks/useConnectivity';
+import { useNavigationState } from './src/presentation/hooks/useNavigationState';
+import ClockLoader from './src/presentation/components/loaders/ClockLoader';
 
 function AppContent() {
   const {
