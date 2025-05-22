@@ -8,4 +8,3 @@ export class GetMarsPhotos {
     return await this.marsRepository.getPhotosBySol(sol, page);
   }
 }
-    

@@ -1,18 +1,19 @@
 export const linking = {
-  prefixes: ['nasaapp://'],
+  prefixes: ['nasaapp://', 'https://nasaapp.com'],
   config: {
     screens: {
       Inicio: {
+        path: 'inicio',
         screens: {
-          "Explorar APIs": 'home',
-          "Acerca de la App": 'about',
+          'Explorar APIs': 'explorar',
+          'Acerca de la App': 'acerca',
         },
       },
       APOD: 'apod',
       'Mars Rover': 'mars',
       EPIC: 'epic',
-      'Asteroids (NEO)': 'neo',
       Donki: 'donki',
+      'NASA Library': 'library',
     },
   },
 };

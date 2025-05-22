@@ -7,8 +7,10 @@ import { EpicScreen } from '../presentation/screens/EpicScreen';
 import { NasaMediaScreen } from '../presentation/screens/NasaMediaScreen';
 import { DonkiScreen } from '../presentation/screens/DonkiScreen';
 
+// crea una instancia drawer navigator
 const Drawer = createDrawerNavigator();
 
+//define y exporta rootnavigator
 export default function RootNavigator() {
   return (
     <Drawer.Navigator initialRouteName="Inicio">

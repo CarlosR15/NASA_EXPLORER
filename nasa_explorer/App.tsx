@@ -15,18 +15,22 @@ import { useConnectivity } from './src/presentation/hooks/useConnectivity';
 import { useNavigationState } from './src/presentation/hooks/useNavigationState';
 import ClockLoader from './src/presentation/components/loaders/ClockLoader';
 
+// componente funcional que contiene la logica principal de la aplicacion
 function AppContent() {
+  // utiliza el hook personalizado useTheme para obtener el tema de Paper
   const {
     paperTheme,
     isDarkContext,
     navigationTheme,
   } = useTheme();
 
+  // utiliza el hook personalizado useConnectivity para obtener el estado de la conexion a internet
   const {
     isConnected,
     connectionType,
   } = useConnectivity();
 
+  // utiliza el hook personalizado useNavigationState para gestionar la persistencia del estado de navegacion
   const {
     initialStateNavigation,
     isReady,
@@ -35,10 +39,12 @@ function AppContent() {
     clearStateNavigation,
   } = useNavigationState();
 
+  // efecto que se ejecuta una sola vez al montar el componente para cargar el estado de navegación guardado
   useEffect(() => {
     loadStateNavigation(); // recupera el estado guardado de navegación
   }, []);
 
+  // si no esta listo muestra un indicador de carga
   if (!isReady) {
     return <ClockLoader explain="Cargando navegación..." />;
   }
@@ -47,11 +53,11 @@ function AppContent() {
     <PaperProvider theme={paperTheme}>
       <StatusBar style={isDarkContext ? 'light' : 'dark'} />
       <NavigationContainer
-        initialState={initialStateNavigation ?? undefined}
+        initialState={initialStateNavigation}
         linking={linking}
         theme={navigationTheme}
         onStateChange={(state) => {
-          if (state) saveStateNavigation(state); // guarda el estado cada vez que cambia
+          if (state) saveStateNavigation(state);
         }}
       >
         <RootNavigator />

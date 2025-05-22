@@ -1,24 +1,26 @@
 import React, { useState } from 'react';
 import { View, Text, FlatList, ActivityIndicator, Linking, Button, StyleSheet } from 'react-native';
 import { useDonkiViewModel } from '../viewmodels/DonkiViewModel';
+import { AnimatedButton } from '../components/buttons/AnimatedButton';
+import ClockLoader from '../components/loaders/ClockLoader';
 
+//define el componente funcional donkiscreen
 export const DonkiScreen = () => {
   const { events, loading, error, fetchEvents } = useDonkiViewModel();
-  const [daysBack, setDaysBack] = useState(30);
+  const [daysBack] = useState(30); //estado de dias en los que se va a buscar el evento CME
 
+  //funcion para recargar los datos
   const refreshData = () => {
     fetchEvents(daysBack);
   };
 
-  if (loading) return <ActivityIndicator size="large" style={styles.loader} />;
-  if (error) return <Text style={styles.error}>{error}</Text>;
+  if (loading) return <ClockLoader/>; // si esta cargando muestra clockloader
+  if (error) return <Text style={styles.error}>{error}</Text>; //si hay un error lo muestra
 
   return (
     <View style={styles.container}>
       <View style={styles.controls}>
-        <Button title="Últimos 7 Días" onPress={() => setDaysBack(7)} />
-        <Button title="Últimos 30 Días" onPress={() => setDaysBack(30)} />
-        <Button title="Refrescar" onPress={refreshData} />
+        <AnimatedButton title="Refrescar" onPress={refreshData} />
       </View>
 
       <FlatList

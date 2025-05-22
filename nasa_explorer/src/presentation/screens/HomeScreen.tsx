@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
+// definicion de las screens para consultar a las apis
 const apiOptions = [
   { label: 'APOD', screen: 'APOD' },
   { label: 'Mars Rover', screen: 'Mars Rover' },
@@ -10,12 +11,12 @@ const apiOptions = [
   { label: 'Image Library', screen: 'NASA Library' },
 ];
 
+//componente homescreen
 export const HomeScreen = () => {
   const navigation = useNavigation<any>();
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
-      <Text style={styles.title}>¿Qué API te gustaria consultar?</Text>
       {apiOptions.map(({ label, screen }) => (
         <TouchableOpacity
           key={screen}
@@ -33,11 +34,6 @@ const styles = StyleSheet.create({
   container: {
     padding: 20,
     alignItems: 'center',
-  },
-  title: {
-    fontSize: 22,
-    fontWeight: 'bold',
-    marginBottom: 20,
   },
   button: {
     width: '100%',

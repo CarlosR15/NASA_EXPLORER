@@ -1,14 +1,17 @@
-import { useColorScheme } from 'react-native';
+import { useColorScheme, Platform } from 'react-native';
 import { DefaultTheme, DarkTheme, Theme as NavigationTheme } from '@react-navigation/native';
-import { MD3LightTheme, MD3DarkTheme, PaperTheme } from 'react-native-paper';
+import { MD3LightTheme, MD3DarkTheme, MD3Theme  } from 'react-native-paper';
 
+//define un hook personalizado que proporciona informacion del tema
 export function useTheme(): {
-  isDarkContext: boolean;
+  isDarkContext: boolean; //indica si el contexto actual es oscuro
   navigationTheme: NavigationTheme;
-  paperTheme: PaperTheme;
+  paperTheme: MD3Theme ;
 } {
   const scheme = useColorScheme();
-  const isDarkContext = scheme === 'dark';
+  const isWeb = Platform.OS === 'web';
+
+  const isDarkContext = isWeb ? false : scheme === 'dark';
   return {
     isDarkContext,
     navigationTheme: isDarkContext ? DarkTheme : DefaultTheme,

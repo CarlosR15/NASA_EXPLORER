@@ -6,7 +6,9 @@ import marsReducer from './slices/marsSlice';
 import libraryReducer from './slices/librarySlice';
 import themeReducer from './slices/themeSlice';
 
+//configuracion del store de redux
 export const store = configureStore({
+   // cada clave en este objeto corresponde a un slice del estado
   reducer: {
     apod: apodReducer,
     donki: donkiReducer,

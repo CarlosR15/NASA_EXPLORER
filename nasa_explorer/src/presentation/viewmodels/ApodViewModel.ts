@@ -1,10 +1,11 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchApodThunk } from '../../store/thunks/apodThunk';
-import { RootState } from '../../store/store';
+import { RootState, AppDispatch } from '../../store/store';
 
+//hook personalizado para obtener los datos
 export const useApodViewModel = () => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
   const { photo, loading, error } = useSelector((state: RootState) => state.apod);
 
   useEffect(() => {
